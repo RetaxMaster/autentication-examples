@@ -30,4 +30,16 @@ const server = app.listen(5000, function() {
 });
 
 // Puede ser ejecutado desde la terminal con: 
-// curl -X POST -d "{ 'username': 'retaxmaster', 'email': 'asd@asd.com', 'name': 'carlos'  }" http://localhost:5000/api/auth/token
+/*
+
+curl \
+-X POST \
+-H "Content-Type: application/json" \
+-d '{ 
+    "username": "retaxmaster", 
+    "email": "asd@asd.com", 
+    "name": "carlos" 
+}' \
+http://localhost:5000/api/auth/token
+
+*/
