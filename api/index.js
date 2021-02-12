@@ -24,13 +24,34 @@ app.post("/api/auth/token", function(req, res) {
 
 });
 
+app.get("/api/auth/verify", function(req, res, next) {
+    
+    const { access_token } = req.query;
+
+    try {
+
+        const decoded = jwt.verify(access_token, config.authJwtSecret);
+
+        res.json({
+            message: "The access token is valid",
+            username: decoded.sub
+        });
+        
+    } catch (err) {
+
+        next(err);
+        
+    }
+
+});
 
 const server = app.listen(5000, function() {
     console.log(`Listening in http://localhost:${server.address().port}`);
 });
 
-// Puede ser ejecutado desde la terminal con: 
 /*
+
+Creación de un token:
 
 curl \
 -X POST \
@@ -41,5 +62,9 @@ curl \
     "name": "carlos" 
 }' \
 http://localhost:5000/api/auth/token
+
+Verificación de un token
+
+curl http://localhost:5000/api/auth/verify?access_token=<token>
 
 */
