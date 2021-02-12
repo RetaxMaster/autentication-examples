@@ -1,9 +1,26 @@
 const express = require("express");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const { config } = require("./config");
 
 const app = express();
+
+// cors config
+/* 
+
+Esta configuración permite solo CORS de dominios específicos
+
+const corsOptions = {
+    origin: "http://example.com"
+}
+
+app.use(cors(corsOptions));
+
+*/
+
+// Permite todos los dominios
+app.use(cors());
 
 // body parser
 app.use(bodyParser.json());
